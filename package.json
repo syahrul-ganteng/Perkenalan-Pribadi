@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "build:css": "tailwindcss -i ./css/style.css -o ./css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./css/style.css -o ./css/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.4.1",
+    "daisyui": "^5.7.50",
+    "tailwindcss": "^4.3.3"
+  }
+}
