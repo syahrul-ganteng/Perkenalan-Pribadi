@@ -200,6 +200,7 @@ h1, h2, h3, p, ol, ul, dl, dd { margin: 0; }
 /* Hero */
 .hero {
   position: relative; overflow: hidden; border-bottom: 1px solid var(--line);
+  isolation: isolate;
   background:
     linear-gradient(180deg, rgba(11, 17, 29, 0.1), rgba(11, 17, 29, 0.42) 70%),
     radial-gradient(circle at top right, rgba(255, 145, 77, 0.15), transparent 35%),
@@ -219,13 +220,18 @@ h1, h2, h3, p, ol, ul, dl, dd { margin: 0; }
   background: linear-gradient(180deg, transparent, rgba(9, 13, 23, 0.26));
   pointer-events: none;
 }
-.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; z-index: 0; }
 .hero .wrap {
   @apply relative grid grid-cols-1;
+  position: relative;
+  z-index: 1;
   padding-block: clamp(56px, 10vw, 128px);
 }
 .hero .wrap > div {
   @apply grid max-w-[820px] gap-4;
+  position: relative;
+  z-index: 1;
+  min-width: 0;
   animation: fadeUp 0.9s cubic-bezier(.2,.7,.2,1) both;
 }
 .availability {
@@ -245,16 +251,19 @@ h1, h2, h3, p, ol, ul, dl, dd { margin: 0; }
 }
 .eyebrow { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
 .hero h1 {
+  max-width: 16ch;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(2.8rem, 6vw, 5.2rem);
-  line-height: 0.94;
-  letter-spacing: -0.045em;
+  line-height: 1.14;
+  letter-spacing: -0.035em;
   text-wrap: balance;
+  overflow-wrap: break-word;
   margin-block: 18px 20px;
   text-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
 }
 .hero h1 span {
+  display: block;
   color: var(--accent);
   text-shadow: 0 0 18px rgba(255, 176, 98, 0.2);
 }
@@ -296,8 +305,8 @@ h1, h2, h3, p, ol, ul, dl, dd { margin: 0; }
   color: var(--accent-ink); border-color: transparent;
   box-shadow: 0 16px 36px rgba(255, 142, 66, 0.25);
 }
-.stack { @apply mt-5 flex list-none flex-wrap gap-2.5 p-0; }
-.stack li {
+.tech-stack { @apply mt-5 flex list-none flex-wrap gap-2.5 p-0; }
+.tech-stack li {
   font-family: var(--font-mono); font-size: 0.76rem; padding: 6px 12px; border-radius: 999px;
   background: linear-gradient(180deg, var(--accent-soft), rgba(255,255,255,0.18));
   color: var(--accent); border: 1px solid rgba(226,122,26,0.12);
@@ -373,7 +382,7 @@ h1, h2, h3, p, ol, ul, dl, dd { margin: 0; }
 :root[data-theme="light"] .brand span {
   box-shadow: 0 0 0 8px rgba(239, 138, 45, 0.09);
 }
-:root[data-theme="light"] .stack li {
+:root[data-theme="light"] .tech-stack li {
   background: linear-gradient(180deg, rgba(239,138,45,0.12), rgba(255,255,255,0.7));
   border-color: rgba(239,138,45,0.12);
 }
@@ -628,7 +637,9 @@ h1, h2, h3, p, ol, ul, dl, dd { margin: 0; }
 }
 @media (max-width: 640px) {
   .links a:not(.keep) { display: none; }
-  .cta { flex-direction: column; align-items: flex-start; }
+  .hero .wrap { padding-block: 56px; }
+  .hero h1 { font-size: 2.7rem; line-height: 1.12; }
+  .cta { flex-direction: column; align-items: stretch; }
   .btn { width: 100%; justify-content: center; }
   .mail { flex-direction: column; align-items: stretch; }
   .mail code { width: 100%; }

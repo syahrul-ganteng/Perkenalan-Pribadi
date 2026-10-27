@@ -1,14 +1,14 @@
 {
-	"pid": 8616,
+	"pid": 8152,
 	"port": 4321,
-	"url": "http://127.0.0.1:4321",
+	"url": "http://localhost:4321",
 	"urls": {
 		"local": [
-			"http://127.0.0.1:4321/"
+			"http://localhost:4321/"
 		],
 		"network": [],
 		"networkInterfaceNames": []
 	},
 	"background": false,
-	"startedAt": "2026-10-26T21:34:37.576Z"
+	"startedAt": "2026-10-27T01:59:01.224Z"
 }
